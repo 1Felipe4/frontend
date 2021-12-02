@@ -1,0 +1,67 @@
+<div>
+  <div *ngIf="currentIngredient.pk" class="edit-form">
+    <h4>Ingredient</h4>
+    <form [formGroup]="form" (ngSubmit)="updateIngredient()">
+      <div class="form-group">
+        <label for="name">Name</label>
+        <input
+          type="text"
+          class="form-control"
+          id="name"
+          formControlName="name"
+          name="name"
+        />
+      </div>
+      <div class="form-group">
+
+        <label>Type</label>
+        <select 
+          class='form-control'
+          name='type'
+          formControlName="type"
+          >
+          <option
+            class="list-group-item"
+            *ngFor="let ingredientType of ingredientTypes; let i = index"
+            value={{ingredientType.pk}}
+          >
+            {{ ingredientType.name }}
+          </option>        
+        </select>
+
+      </div>
+      <label for="pic">Pic</label>
+      <input
+        type="file"
+        class="form-control"
+        id="pic"
+      />
+
+      <input type="submit" value="Update">
+
+    </form>
+    
+    <p>Pic</p>
+    <img src={{currentIngredient.img_url}}/>
+
+
+
+    <button class="badge badge-danger mr-2" (click)="deleteIngredient()">
+      Delete
+    </button>
+
+    <button
+      type="submit"
+      class="badge badge-success mb-2"
+      (click)="updateIngredient()"
+    >
+      Update
+    </button>
+    <p>{{ message }}</p>
+  </div>
+
+  <div *ngIf="!currentIngredient.pk">
+    <br />
+    <p>Cannot access this Ingredient...</p>
+  </div>
+</div>

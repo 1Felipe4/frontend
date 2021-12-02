@@ -1,0 +1,12 @@
+.mat-card{
+    &-header{
+        padding: .5em 0;
+        margin: .5em 0;
+    }
+    padding: .5em;
+    margin: .5em;
+}
+
+.list{
+    min-height: 100vh;
+}

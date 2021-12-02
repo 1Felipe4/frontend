@@ -1,0 +1,66 @@
+<div class="row">
+    <div class="todo-container col-4">
+
+        <div class="list mat-card"
+            cdkDropList
+            #ingredientsList = "cdkDropList"
+            [cdkDropListData]='ingredients'
+            [cdkDropListConnectedTo]="[menuList]"
+            (cdkDropListDropped)="drop($event)"
+            
+            >
+            <mat-card-header>
+                <mat-card-title>Ingredients</mat-card-title>
+            </mat-card-header>
+            <input
+            type="text"
+            class="form-control"
+            placeholder="Search by name"
+            [(ngModel)]="name"
+            (ngModelChange)="searchName()"
+            />
+            <mat-card *ngFor="let ingredient of ingredients" cdkDrag>
+                <img class="img-thumbnail" style="width:10em" src={{ingredient.img_url}} alt="Card image cap">
+                <mat-card-header>
+                <mat-card-title>{{ingredient.name}}</mat-card-title>
+                </mat-card-header>
+            </mat-card>
+            
+        </div>
+    </div>
+
+  <div class="done-container col-4">
+    <div class="list mat-card"
+    cdkDropList
+    #menuList = "cdkDropList"
+    [cdkDropListData]='currentPlate.ingredients'
+    [cdkDropListConnectedTo]="[ingredientsList]"
+    (cdkDropListDropped)="menuDrop($event)"
+    >
+    <mat-card-header>
+        <mat-card-title>Menu is {{balance}}</mat-card-title>
+    </mat-card-header>
+    <mat-card *ngFor="let ingredient of currentPlate.ingredients" cdkDrag>
+        <img class="img-thumbnail" style="width:10em" src={{ingredient.img_url}} alt="Card image cap">
+        <mat-card-header>
+        <mat-card-title>{{ingredient.name}}</mat-card-title>
+        </mat-card-header>
+    </mat-card>
+    </div>
+    
+
+  </div>
+
+      <div class="todo-container col-4">
+        <div class="mat-card">
+            <mat-card-header>
+                <mat-card-title>Instructions</mat-card-title>
+            </mat-card-header>
+            <mat-card-content>
+                Your friends are coming over soon! Try Creating a balanced meal for your mom to prepare by dragging the foods you've chosen to the menu 
+                Remember to choose foods from the 5 main food groups! (Protein, Vegetables, Fruits, Dairy, Grains)    
+            </mat-card-content>       
+        </div>
+    </div>
+
+</div>

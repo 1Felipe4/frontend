@@ -1,0 +1,35 @@
+<div class="list-container">
+  <div class="todo-container column-container">
+    <div class="list"
+    cdkDropList
+    #ingredientsList = "cdkDropList"
+    [cdkDropListData]='ingredients'
+    [cdkDropListConnectedTo]="[menuList]"
+    (cdkDropListDropped)="drop($event)"
+    >
+      <h2>Ingredients</h2>
+      <mat-card *ngFor="let ingredient of ingredients" cdkDrag>
+        <mat-card-header>
+          <mat-card-title>{{ingredient.name}}</mat-card-title>
+        </mat-card-header>
+      </mat-card>
+    </div>
+  </div>
+
+  <div class="done-container column-container">
+    <div class="list"
+    cdkDropList
+    #menuList = "cdkDropList"
+    [cdkDropListData]='currentPlate.ingredients'
+    [cdkDropListConnectedTo]="[ingredientsList]"
+    (cdkDropListDropped)="menuDrop($event)"
+    >
+      <h2>Menu</h2>
+      <mat-card *ngFor="let ingredient of currentPlate.ingredients" cdkDrag>
+        <mat-card-header>
+          <mat-card-title>{{ingredient.name}}</mat-card-title>
+        </mat-card-header>
+      </mat-card>
+    </div>
+  </div>
+</div>
